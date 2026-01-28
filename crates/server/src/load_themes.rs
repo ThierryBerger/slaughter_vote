@@ -13,21 +13,6 @@ async fn main() -> anyhow::Result<()> {
 
     println!("Connected to database!");
 
-    // Create tables if they don't exist
-    sqlx::query(
-        r#"
-        CREATE TABLE IF NOT EXISTS themes (
-            id SERIAL PRIMARY KEY,
-            content TEXT NOT NULL,
-            created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-        );
-        "#,
-    )
-    .execute(&db)
-    .await?;
-
-    println!("Tables ready!");
-
     // Read themes from file
     let themes_content = std::fs::read_to_string("themes.txt")
         .expect("Failed to read themes.txt - make sure it exists!");

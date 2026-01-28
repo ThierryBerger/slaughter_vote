@@ -75,6 +75,7 @@ async fn main() -> anyhow::Result<()> {
         .route("/health", get(health))
         .route("/themes/next", get(get_next_theme))
         .route("/themes/vote", post(submit_vote))
+        // TODO: these may have to not exist or be protected.
         .route("/admin/stats", get(get_stats))
         .route("/admin/export", get(export_votes))
         .layer(CorsLayer::permissive())
